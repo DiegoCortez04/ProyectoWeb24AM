@@ -1,7 +1,10 @@
-﻿namespace Proyecto24AM.Models.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Proyecto24AM.Models.Entities
 {
     public class Rol
     {
+        [Key]
         public int PkRol { get; set; }
         public string Nombre { get; set; }
     }
