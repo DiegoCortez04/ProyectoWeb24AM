@@ -11,8 +11,8 @@ using Proyecto24AM.Context;
 namespace Proyecto24AM.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231030174449_example")]
-    partial class example
+    [Migration("20231030180527_diegitocraft")]
+    partial class diegitocraft
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
