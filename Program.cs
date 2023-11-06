@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Proyecto24AM.Context;
+using Proyecto24AM.Services.IServices;
+using Proyecto24AM.Services.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,11 @@ builder.Services.AddControllersWithViews();
 //Register services here
 builder.Services.AddDbContext<ApplicationDbContext>(options => 
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+//Inyeccion de dependencia
+builder.Services.AddTransient<IArticuloServices, ArticuloServices>();
+//builder.Services.AddScoped<IArticuloServices, ArticuloServices>();
+//builder.Services.AddSingleton<IArticuloServices, ArticuloServices>();
 
 var app = builder.Build();
 
@@ -29,6 +36,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Articulo}/{action=Index}/{id?}");
 
 app.Run();

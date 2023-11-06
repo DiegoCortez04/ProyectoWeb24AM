@@ -6,8 +6,11 @@ namespace Proyecto24AM.Models.Entities
     {
         [Key]
         public int PkLibro { get; set; }
+        [Required]
         public string Titulo { get; set; }
+        [Required]
         public string Decripcion { get; set; }
+        [Required]
         public string Images { get; set; }
     }
 }
