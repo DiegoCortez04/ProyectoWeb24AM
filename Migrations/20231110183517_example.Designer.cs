@@ -11,8 +11,8 @@ using Proyecto24AM.Context;
 namespace Proyecto24AM.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231030180527_diegitocraft")]
-    partial class diegitocraft
+    [Migration("20231110183517_example")]
+    partial class example
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,30 @@ namespace Proyecto24AM.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Proyecto24AM.Models.Entities.Articulo", b =>
+                {
+                    b.Property<int>("PkArticulo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PkArticulo"));
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Precio")
+                        .HasColumnType("float");
+
+                    b.HasKey("PkArticulo");
+
+                    b.ToTable("Articulos");
+                });
 
             modelBuilder.Entity("Proyecto24AM.Models.Entities.Libro", b =>
                 {

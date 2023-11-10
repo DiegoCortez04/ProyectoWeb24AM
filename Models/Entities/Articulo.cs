@@ -11,6 +11,6 @@ namespace Proyecto24AM.Models.Entities
         [Required]
         public string Descripcion { get; set; }
         [Required]
-        public decimal Precio { get; set; }
+        public double Precio { get; set; }
     }
 }

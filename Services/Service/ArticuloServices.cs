@@ -63,5 +63,54 @@ namespace Proyecto24AM.Services.Service
                 throw new Exception("ERROR:" + ex.Message);
             }
         }
+        //EDITAR ARTICULO
+        public async Task<Articulo> EditarArticulo(int id, Articulo articuloEditado)
+        {
+            try
+            {
+                var articuloExistente = await _context.Articulos.FindAsync(id);
+                if (articuloExistente != null)
+                {
+                    articuloExistente.Nombre = articuloEditado.Nombre;
+                    articuloExistente.Descripcion = articuloEditado.Descripcion;
+                    articuloExistente.Precio = articuloEditado.Precio;
+
+                    _context.Articulos.Update(articuloExistente);
+                    await _context.SaveChangesAsync();
+
+                    return articuloExistente;
+                }
+                else
+                {
+                    throw new Exception("No se encontró el artículo con el ID proporcionado.");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Surgió un error: " + ex.Message);
+            }
+        }
+        //ELIMINAR ARTICULO
+        public async Task<Articulo> EliminarArticulo(int id)
+        {
+            try
+            {
+                var articuloAEliminar = await _context.Articulos.FindAsync(id);
+                if (articuloAEliminar != null)
+                {
+                    _context.Articulos.Remove(articuloAEliminar);
+                    await _context.SaveChangesAsync();
+                    return articuloAEliminar;
+                }
+                else
+                {
+                    throw new Exception("No se encontró el artículo con el ID proporcionado.");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Surgió un error: " + ex.Message);
+            }
+        }
     }
 }

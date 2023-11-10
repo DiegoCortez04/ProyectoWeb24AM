@@ -21,6 +21,30 @@ namespace Proyecto24AM.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Proyecto24AM.Models.Entities.Articulo", b =>
+                {
+                    b.Property<int>("PkArticulo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PkArticulo"));
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Precio")
+                        .HasColumnType("float");
+
+                    b.HasKey("PkArticulo");
+
+                    b.ToTable("Articulos");
+                });
+
             modelBuilder.Entity("Proyecto24AM.Models.Entities.Libro", b =>
                 {
                     b.Property<int>("PkLibro")
