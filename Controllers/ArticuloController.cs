@@ -11,10 +11,18 @@ namespace Proyecto24AM.Controllers
             _articuloServices = articuloServices;
         }
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var response = _articuloServices.GetArticulos();
-            return View(response);
+            try
+            {
+                var response = await _articuloServices.GetArticulos();
+                return View(response);
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("ERROR: " + ex);
+            }
         }
     }
 }
