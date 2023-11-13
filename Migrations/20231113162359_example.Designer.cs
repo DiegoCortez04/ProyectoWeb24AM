@@ -11,7 +11,7 @@ using Proyecto24AM.Context;
 namespace Proyecto24AM.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231110183517_example")]
+    [Migration("20231113162359_example")]
     partial class example
     {
         /// <inheritdoc />

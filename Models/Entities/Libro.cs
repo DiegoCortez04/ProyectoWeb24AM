@@ -12,5 +12,7 @@ namespace Proyecto24AM.Models.Entities
         public string Decripcion { get; set; }
         [Required]
         public string Images { get; set; }
+        [Required]
+        public string Activo { get; set; }
     }
 }

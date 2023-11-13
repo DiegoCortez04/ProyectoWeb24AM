@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AspNetCore;
+using Microsoft.EntityFrameworkCore;
 using Proyecto24AM.Context;
 using Proyecto24AM.Models.Entities;
 using Proyecto24AM.Services.IServices;
@@ -91,21 +92,33 @@ namespace Proyecto24AM.Services.Service
             }
         }
         //ELIMINAR ARTICULO
-        public async Task<Articulo> EliminarArticulo(int id)
+        public bool EliminarArticulo(int id)
         {
             try
             {
-                var articuloAEliminar = await _context.Articulos.FindAsync(id);
-                if (articuloAEliminar != null)
+                Articulo articulo = _context.Articulos.Find(id);
+                var res = _context.Articulos.Remove(articulo);
+                _context.SaveChanges();
+                if (articulo != null)
                 {
-                    _context.Articulos.Remove(articuloAEliminar);
-                    await _context.SaveChangesAsync();
-                    return articuloAEliminar;
+                    return true;
                 }
                 else
                 {
-                    throw new Exception("No se encontró el artículo con el ID proporcionado.");
+                    return false;
                 }
+                //Agregar async y Task<>
+                //var articuloAEliminar = await _context.Articulos.FindAsync(id);
+                //if (articuloAEliminar != null)
+                //{
+                //    _context.Articulos.Remove(articuloAEliminar);
+                //    await _context.SaveChangesAsync();
+                //    return articuloAEliminar;
+                //}
+                //else
+                //{
+                //    throw new Exception("No se encontró el artículo con el ID proporcionado.");
+                //}
             }
             catch (Exception ex)
             {
